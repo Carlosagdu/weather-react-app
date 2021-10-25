@@ -1,5 +1,7 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
+import {Dimmer, Loader} from 'semantic-ui-react'
+import Weather from "./components/weather";
 
 const App = () => {
   const [lat, setLat] = useState([]);
@@ -27,7 +29,15 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Esto es un H1</h1>
+      {typeof data.main != "undefined" ? (
+        <Weather weatherData={data} />
+      ) : (
+        <div>
+          <Dimmer active>
+            <Loader>Loading..</Loader>
+          </Dimmer>
+        </div>
+      )}
     </div>
   );
 };
